@@ -1,0 +1,42 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}HusverdiApp{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">HusverdiApp</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class='container'>
+    <p>Predict the price of a housesale in Ames, Iowa, between year 2006 and 2010 with the help of different attributes about the house and the sale.</p>
+</div>
+
+<div class='container'>
+    <h3><b>{% if session.get('pred') %} The predicted price of the house is: {{session.get('pred')['pred']}}${% else %}{% endif %}</b></h3>
+</div>
+
+<div class='container'>
+    {{ wtf.quick_form(form) }}
+</div>
+
+{% endblock %}
